@@ -7,11 +7,13 @@ type Profile {
   id: ID!
   title: String!
   remote: Boolean!
+  experience: Int!
 }
 
 input ProfileInput {
   remote: Boolean!
   title: String!
+  experience: Int!
 }
 
 type CreateProfilePayload {

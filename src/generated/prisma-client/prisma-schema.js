@@ -46,6 +46,7 @@ type Profile {
   createdAt: DateTime!
   title: String!
   remote: Boolean!
+  experience: Int!
 }
 
 type ProfileConnection {
@@ -58,6 +59,7 @@ input ProfileCreateInput {
   id: ID
   title: String!
   remote: Boolean!
+  experience: Int!
 }
 
 type ProfileEdge {
@@ -74,6 +76,8 @@ enum ProfileOrderByInput {
   title_DESC
   remote_ASC
   remote_DESC
+  experience_ASC
+  experience_DESC
 }
 
 type ProfilePreviousValues {
@@ -81,6 +85,7 @@ type ProfilePreviousValues {
   createdAt: DateTime!
   title: String!
   remote: Boolean!
+  experience: Int!
 }
 
 type ProfileSubscriptionPayload {
@@ -104,11 +109,13 @@ input ProfileSubscriptionWhereInput {
 input ProfileUpdateInput {
   title: String
   remote: Boolean
+  experience: Int
 }
 
 input ProfileUpdateManyMutationInput {
   title: String
   remote: Boolean
+  experience: Int
 }
 
 input ProfileWhereInput {
@@ -150,6 +157,14 @@ input ProfileWhereInput {
   title_not_ends_with: String
   remote: Boolean
   remote_not: Boolean
+  experience: Int
+  experience_not: Int
+  experience_in: [Int!]
+  experience_not_in: [Int!]
+  experience_lt: Int
+  experience_lte: Int
+  experience_gt: Int
+  experience_gte: Int
   AND: [ProfileWhereInput!]
   OR: [ProfileWhereInput!]
   NOT: [ProfileWhereInput!]

@@ -109,7 +109,9 @@ export type ProfileOrderByInput =
   | "title_ASC"
   | "title_DESC"
   | "remote_ASC"
-  | "remote_DESC";
+  | "remote_DESC"
+  | "experience_ASC"
+  | "experience_DESC";
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
@@ -156,6 +158,14 @@ export interface ProfileWhereInput {
   title_not_ends_with?: Maybe<String>;
   remote?: Maybe<Boolean>;
   remote_not?: Maybe<Boolean>;
+  experience?: Maybe<Int>;
+  experience_not?: Maybe<Int>;
+  experience_in?: Maybe<Int[] | Int>;
+  experience_not_in?: Maybe<Int[] | Int>;
+  experience_lt?: Maybe<Int>;
+  experience_lte?: Maybe<Int>;
+  experience_gt?: Maybe<Int>;
+  experience_gte?: Maybe<Int>;
   AND?: Maybe<ProfileWhereInput[] | ProfileWhereInput>;
   OR?: Maybe<ProfileWhereInput[] | ProfileWhereInput>;
   NOT?: Maybe<ProfileWhereInput[] | ProfileWhereInput>;
@@ -165,16 +175,19 @@ export interface ProfileCreateInput {
   id?: Maybe<ID_Input>;
   title: String;
   remote: Boolean;
+  experience: Int;
 }
 
 export interface ProfileUpdateInput {
   title?: Maybe<String>;
   remote?: Maybe<Boolean>;
+  experience?: Maybe<Int>;
 }
 
 export interface ProfileUpdateManyMutationInput {
   title?: Maybe<String>;
   remote?: Maybe<Boolean>;
+  experience?: Maybe<Int>;
 }
 
 export interface ProfileSubscriptionWhereInput {
@@ -197,6 +210,7 @@ export interface Profile {
   createdAt: DateTimeOutput;
   title: String;
   remote: Boolean;
+  experience: Int;
 }
 
 export interface ProfilePromise extends Promise<Profile>, Fragmentable {
@@ -204,6 +218,7 @@ export interface ProfilePromise extends Promise<Profile>, Fragmentable {
   createdAt: () => Promise<DateTimeOutput>;
   title: () => Promise<String>;
   remote: () => Promise<Boolean>;
+  experience: () => Promise<Int>;
 }
 
 export interface ProfileSubscription
@@ -213,6 +228,7 @@ export interface ProfileSubscription
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   title: () => Promise<AsyncIterator<String>>;
   remote: () => Promise<AsyncIterator<Boolean>>;
+  experience: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface ProfileNullablePromise
@@ -222,6 +238,7 @@ export interface ProfileNullablePromise
   createdAt: () => Promise<DateTimeOutput>;
   title: () => Promise<String>;
   remote: () => Promise<Boolean>;
+  experience: () => Promise<Int>;
 }
 
 export interface ProfileConnection {
@@ -347,6 +364,7 @@ export interface ProfilePreviousValues {
   createdAt: DateTimeOutput;
   title: String;
   remote: Boolean;
+  experience: Int;
 }
 
 export interface ProfilePreviousValuesPromise
@@ -356,6 +374,7 @@ export interface ProfilePreviousValuesPromise
   createdAt: () => Promise<DateTimeOutput>;
   title: () => Promise<String>;
   remote: () => Promise<Boolean>;
+  experience: () => Promise<Int>;
 }
 
 export interface ProfilePreviousValuesSubscription
@@ -365,6 +384,7 @@ export interface ProfilePreviousValuesSubscription
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   title: () => Promise<AsyncIterator<String>>;
   remote: () => Promise<AsyncIterator<Boolean>>;
+  experience: () => Promise<AsyncIterator<Int>>;
 }
 
 /*

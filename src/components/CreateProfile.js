@@ -3,11 +3,12 @@ import { Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
 
 const POST_MUTATION = gql`
-  mutation PostMutation($title: String!, $remote: Boolean!){
+  mutation PostMutation($title: String!, $remote: Boolean!, $experience: Int!){
   createProfile(
     input: {
       title: $title
       remote: $remote
+      experience: $experience
     }
   ) {
       profile {
@@ -21,11 +22,12 @@ const POST_MUTATION = gql`
 `
 
 export default function CreateProfile (props) {
-  const [title, updateTitle] = useState('')
-  const [remote, updateRemote] = useState(true)
+  const [title, updateTitle] = useState(null)
+  const [remote, updateRemote] = useState(false)
+  const [experience, updateExperience] = useState(null)
 
-  return <div>
-    <div >
+  return <>
+    <div>
       <input
         value={title}
         onChange={e => updateTitle(e.target.value)}
@@ -33,18 +35,27 @@ export default function CreateProfile (props) {
         placeholder='A title for the profile'
       />
       <input
+        value={experience}
+        onChange={e => updateExperience(parseInt(e.target.value))}
+        type='number'
+        min='0'
+        step='1'
+        placeholder='years of relevant experience'
+      />
+      <label for='remote'>Can work remote</label>
+      <input
+        id='remote'
         value={remote}
-        onChange={e => updateRemote(e.target.value)}
-        type='radio'
-        placeholder='The REMOTE for the profile'
+        onChange={e => updateRemote(e.target.checked)}
+        type='checkbox'
       />
     </div>
     <Mutation
       mutation={POST_MUTATION}
-      variables={{ title, remote }}
+      variables={{ title, remote, experience }}
       onCompleted={() => props.history.push('/')}
     >
       {postMutation => <button onClick={postMutation}>Submit</button>}
     </Mutation>
-  </div>
+  </>
 }

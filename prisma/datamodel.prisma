@@ -3,4 +3,5 @@ type Profile {
   createdAt: DateTime! @createdAt
   title: String!
   remote: Boolean!
+  experience: Int!
 }
