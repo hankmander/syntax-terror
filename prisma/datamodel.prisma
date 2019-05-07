@@ -1,0 +1,6 @@
+type Profile {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  title: String!
+  remote: Boolean!
+}

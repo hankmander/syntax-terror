@@ -3,9 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "apollo-boost": "^0.3.1",
+    "apollo-link-context": "^1.0.17",
+    "graphql": "^14.2.1",
+    "graphql-yoga": "^1.17.4",
+    "jsonwebtoken": "^8.5.1",
+    "prisma": "^1.32.2",
+    "prisma-client-lib": "^1.30.4",
     "react": "^16.8.6",
+    "react-apollo": "^2.5.5",
     "react-dom": "^16.8.6",
-    "react-scripts": "3.0.0"
+    "react-router": "^5.0.0",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "3.0.0",
+    "standard": "^12.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -14,7 +25,10 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "plugins": [
+      "react-hooks"
+    ]
   },
   "browserslist": {
     "production": [

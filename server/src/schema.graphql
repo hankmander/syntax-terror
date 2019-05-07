@@ -1,0 +1,24 @@
+type Query {
+  info: String!
+  feed: [Profile!]!
+}
+
+type Profile {
+  id: ID!
+  title: String!
+  remote: Boolean!
+}
+
+input ProfileInput {
+  remote: Boolean!
+  title: String!
+}
+
+type CreateProfilePayload {
+  authToken: String!
+  profile: Profile!
+}
+
+type Mutation {
+  createProfile(input: ProfileInput!): CreateProfilePayload!
+}
