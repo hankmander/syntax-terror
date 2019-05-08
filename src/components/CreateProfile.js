@@ -22,9 +22,9 @@ const POST_MUTATION = gql`
 `
 
 export default function CreateProfile (props) {
-  const [title, updateTitle] = useState(null)
+  const [title, updateTitle] = useState('')
   const [remote, updateRemote] = useState(false)
-  const [experience, updateExperience] = useState(null)
+  const [experience, updateExperience] = useState('')
 
   return <>
     <div>
@@ -42,7 +42,7 @@ export default function CreateProfile (props) {
         step='1'
         placeholder='years of relevant experience'
       />
-      <label for='remote'>Can work remote</label>
+      <label htmlFor='remote'>Can work remote</label>
       <input
         id='remote'
         value={remote}
