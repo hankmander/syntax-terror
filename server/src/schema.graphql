@@ -1,6 +1,7 @@
 type Query {
   info: String!
   feed: [Profile!]!
+  profile(id: ID!): Profile
 }
 
 type Profile {
@@ -23,4 +24,5 @@ type CreateProfilePayload {
 
 type Mutation {
   createProfile(input: ProfileInput!): CreateProfilePayload!
+  updateProfile(id: ID, input: ProfileInput!): Profile!
 }

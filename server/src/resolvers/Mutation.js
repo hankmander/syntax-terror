@@ -10,6 +10,22 @@ async function createProfile (parent, { input }, context, info) {
   }
 }
 
+async function updateProfile (root, { id, input }, context) {
+  const Authorization = context.request.get('Authorization')
+  if (Authorization) {
+    const token = Authorization.replace('Bearer ', '')
+    const decoded = jwt.verify(token, APP_SECRET)
+    if (decoded.id === id) {
+      return context.prisma.updateProfile({
+        where: { id },
+        data: input
+      })
+    }
+  }
+  throw new Error('Not authenticated')
+}
+
 module.exports = {
+  updateProfile,
   createProfile
 }
