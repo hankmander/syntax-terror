@@ -12,7 +12,7 @@ export default function App () {
       <div>
         <Switch>
           <Route exact path='/' component={ProfileList} />
-          <Route exact path='/create' component={CreateProfile} />
+          <Route path='/profiles/:id?' component={CreateProfile} />
         </Switch>
       </div>
     </div>

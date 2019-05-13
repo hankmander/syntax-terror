@@ -8,7 +8,7 @@ function Header (props) {
     <Link to='/'>
       new
     </Link>
-    <Link to='/create'>
+    <Link to='/profiles'>
       submit
     </Link>
   </>

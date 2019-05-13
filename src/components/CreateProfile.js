@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Mutation } from 'react-apollo'
+import { useMutation } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
 
 const POST_MUTATION = gql`
@@ -21,12 +21,24 @@ const POST_MUTATION = gql`
 }
 `
 
-export default function CreateProfile (props) {
+export default function CreateProfile ({ history, match }) {
   const [title, updateTitle] = useState('')
   const [remote, updateRemote] = useState(false)
   const [experience, updateExperience] = useState('')
+  const [updateMessage, updateUpdateMessage] = useState('')
+  const authToken = window.location.search.match(/\?token=(.+)/)
+
+  const create = useMutation(POST_MUTATION, {
+    update: (proxy, { data: { createProfile } }) => {
+      // update is called when mutation is done. Inform user
+      updateUpdateMessage('Job posted!')
+      //window.location.search = `?token=${createProfile.authToken}`
+    },
+    variables: { title, remote, experience }
+  })
 
   return <>
+    <h2>{updateMessage}</h2>
     <div>
       <input
         value={title}
@@ -50,12 +62,6 @@ export default function CreateProfile (props) {
         type='checkbox'
       />
     </div>
-    <Mutation
-      mutation={POST_MUTATION}
-      variables={{ title, remote, experience }}
-      onCompleted={() => props.history.push('/')}
-    >
-      {postMutation => <button onClick={postMutation}>Submit</button>}
-    </Mutation>
+    <button onClick={create}>Submit</button>
   </>
 }
